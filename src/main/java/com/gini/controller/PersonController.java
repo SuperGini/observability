@@ -4,9 +4,13 @@ import com.gini.dto.request.PersonRequest;
 import com.gini.dto.response.PersonResponse;
 import com.gini.services.PersonService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,10 +21,16 @@ public class PersonController {
     @PostMapping("/person")
     public PersonResponse save(@RequestBody PersonRequest personRequest) {
        return personService.save(personRequest);
-
     }
 
+    @GetMapping("/person/{id}")
+    public PersonResponse findById(@PathVariable String id) {
+        return personService.findById(id);
+    }
 
-
+    @GetMapping("/persons")
+    List<PersonResponse> findAll() {
+        return personService.getAllPersons();
+    }
 
 }

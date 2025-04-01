@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: observ-1
+  datasource:
+    url: jdbc:postgresql://localhost:5432/observability
+    username: ginitoru
+    password: 1234
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+
