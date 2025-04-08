@@ -15,4 +15,57 @@ spring:
 
     show-sql: true
 
+#graphana + prometheus
+# https://community.grafana.com/t/what-is-the-difference-between-grafana-and-grafana-oss-in-docker-hub/71503
+# https://grafana.com/docs/grafana/latest/setup-grafana/installation/kubernetes/
+# https://grafana.com/grafana/dashboards/?search=spring+boot -> dashboards
+# https://www.youtube.com/watch?v=_WdIlz33FKE -> scrape info from postgresql
+# sql expoerter -> https://github.com/prometheus-community/postgres_exporter
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus, metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        all: true
+    enable:
+      all: true
+  prometheus:
+    metrics:
+      export:
+        step: 5s
+  tracing: ################# tracing Start: https://docs.spring.io/spring-boot/reference/actuator/tracing.html
+    sampling:
+      probability: 1
+    enabled: true
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans # this is the default url where the app sends spans
 
+
+
+#  metrics:
+#    distribution:
+#      percentiles-histogram:
+#        test1.timer: true
+#      percentiles:
+#        test1.timer: 0.9,0.99,0.5
+#  observations:
+#    annotations:
+#      enabled: true # enables annotations @Observed @Timed etc.
+#  otlp: # from here we configure the otlp
+#    metrics:
+#      export:
+#        batch-size: 1
+#        url: http://localhost:4318/v1/metrics #default
+#    logging:
+#      endpoint: #add here the endpoint
+#  tracing:
+#    sampling:
+#      probability: 1 # all requests are tracked if i want 50% of request to be tracked -> 0.5

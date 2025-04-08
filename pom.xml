@@ -46,6 +46,75 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+<!--        Observability-->
+
+
+<!--for databa base observability it will add aditional info in the actuator/metrics and it will be availaible in actuator/prometheus-->
+        <dependency>
+            <groupId>net.ttddyy.observation</groupId>
+            <artifactId>datasource-micrometer-spring-boot</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+<!--&lt;!&ndash;        tracing&ndash;&gt;-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+
+<!--&lt;!&ndash;        https://docs.spring.io/spring-boot/reference/actuator/tracing.html#actuator.micrometer-tracing.tracer-implementations.otel-otlp&ndash;&gt;-->
+<!--&lt;!&ndash;    bridge the micrometer tracing to OpenTelemetry    &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.micrometer</groupId>-->
+<!--            <artifactId>micrometer-tracing-bridge-otel</artifactId>-->
+<!--            <version>1.4.4</version>-->
+<!--        </dependency>-->
+<!--&lt;!&ndash;reports traces to a collector that can accept OTLP&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.opentelemetry</groupId>-->
+<!--            <artifactId>opentelemetry-exporter-otlp</artifactId>-->
+<!--            <version>1.48.0</version>-->
+<!--        </dependency>-->
+<!--&lt;!&ndash;  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////&ndash;&gt;-->
+<!--&lt;!&ndash;        loging&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.opentelemetry.instrumentation</groupId>-->
+<!--            <artifactId>opentelemetry-logback-appender-1.0</artifactId>-->
+<!--            <version>2.14.0-alpha</version>-->
+<!--        </dependency>-->
+
+
+<!--////////observability with prometheus and graphana                -->
+
+
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--        TRACES  START      -->
+
+<!--        step1:  take the metrics from the app and transform them in Open Telemetry format-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-otel</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+<!--        step2: takes the metrics in open telemetry format and exports them to zipkin-->
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-exporter-zipkin</artifactId>
+            <version>1.49.0</version>
+        </dependency>
+
+
+        <!--        TRACES  END      -->
+
     </dependencies>
 
     <build>
