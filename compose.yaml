@@ -22,10 +22,17 @@ services:
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/dashboards/ai-metrics-dashboard.json
     depends_on:
       - prometheus
-  zipkin:
+  zipkin: # in grafana UI put http://zipkin:9411 to connect grafana to zipkin
     image: 'openzipkin/zipkin:latest'
     ports:
       - '9411:9411'
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    command: [ "-config.file=/etc/loki/local-config.yaml" ]
+    ports:
+      - "3100:3100"
+#    command: -config.file=/etc/loki/local-config.yaml
 
 volumes:
   grafana-storage:

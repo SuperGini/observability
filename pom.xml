@@ -80,11 +80,11 @@
 <!--        </dependency>-->
 <!--&lt;!&ndash;  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////&ndash;&gt;-->
 <!--&lt;!&ndash;        loging&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.opentelemetry.instrumentation</groupId>-->
-<!--            <artifactId>opentelemetry-logback-appender-1.0</artifactId>-->
-<!--            <version>2.14.0-alpha</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.opentelemetry.instrumentation</groupId>
+            <artifactId>opentelemetry-logback-appender-1.0</artifactId>
+            <version>2.14.0-alpha</version>
+        </dependency>
 
 
 <!--////////observability with prometheus and graphana                -->
@@ -115,7 +115,42 @@
 
         <!--        TRACES  END      -->
 
+<!--        <dependency>-->
+<!--            <groupId>io.opentelemetry.instrumentation</groupId>-->
+<!--            <artifactId>opentelemetry-spring-boot-starter</artifactId>-->
+<!--            <version>2.15.0</version>-->
+<!--        </dependency>-->
+
+
+<!-- ////////////////////////////       Open Telemetry ////////////////////////////////////////////////////////   -->
+
+        <!-- transfer micrometer to opentelemetry fromat -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-otlp</artifactId>
+        </dependency>
+
+        <!-- send observability  -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-otel</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+
     </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-bom</artifactId>
+                <version>1.14.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

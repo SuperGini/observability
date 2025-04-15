@@ -1,7 +1,8 @@
 package com.gini.config;
 
-//import io.opentelemetry.api.OpenTelemetry;
-//import io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender;
+import io.opentelemetry.api.OpenTelemetry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Configuration;
@@ -13,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class OtlConfg implements InitializingBean {
 
-//    private final OpenTelemetry openTelemetry;
-//
-//
+    private final OpenTelemetry openTelemetry;
+
+
     @Override
     public void afterPropertiesSet() {
-//        OpenTelemetryAppender.install(this.openTelemetry);
+        OpenTelemetryAppender.install(this.openTelemetry);
     }
 }
