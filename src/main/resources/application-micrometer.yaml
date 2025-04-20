@@ -52,6 +52,7 @@ spring:
 #      endpoint: http://localhost:3100/loki/api/v1/push
 
 
+# use open telemetry : https://www.youtube.com/watch?v=UC09F-yGMG4
 management:
   endpoints:
     web:

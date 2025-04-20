@@ -5,6 +5,7 @@ receivers:
       http:
         endpoint: 0.0.0.0:4318
       grpc:
+        endpoint: 0.0.0.0:4317
 
 processors:
   # batch metrics before sending to reduce API usage
@@ -14,30 +15,35 @@ exporters:
   # enables debugging
   debug:
 
-  loki:
-    endpoint: "http://loki:3100/loki/api/v1/push"
+#  loki:
+#    endpoint: "http://loki:3100/loki/api/v1/push"
+
+  otlphttp:
+    endpoint: "http://loki:3100/otlp"
+    tls:
+      insecure: true
 
   prometheus:
     endpoint: "0.0.0.0:8889"
     const_labels:
       label1: value1
 
-#  otlp:
+#  otlp:  -> default otlp este pt GRPC
 #    endpoint: tempo:4317 # grpc
 #    tls:
 #      insecure: true
 
-  otlphttp:
-    endpoint: tempo:4319
+#  otlphttp:
+#    endpoint: tempo:4319
 #    tls:
 #      insecure: true
 
   zipkin:
-    endpoint: "http://zipkin-all-in-one:9411/api/v2/spans"
+    endpoint: "http://zipkin:9411/api/v2/spans"
     format: proto
 
 #  jaeger:
-#    endpoint: jaeger-all-in-one:14250
+#    endpoint: jaeger:14250
 #    tls:
 #      insecure: true
 
@@ -56,11 +62,11 @@ service:
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheus]
+      exporters: [prometheus, debug]
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [zipkin,otlphttp]
+      exporters: [zipkin, debug]
     logs:
       receivers: [otlp]
-      exporters: [loki, debug]
+      exporters: [otlphttp, debug]

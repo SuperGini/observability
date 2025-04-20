@@ -4,8 +4,8 @@ services:
     container_name: otel-collector
     image: otel/opentelemetry-collector-contrib
 #    restart: always
-#    command:
-#      - --config=/etc/otelcol-contrib/config.yml
+    command:
+      - --config=/etc/otelcol-contrib/config.yml
     volumes:
       - ./docker2/collector/otel-collector.yml:/etc/otelcol-contrib/config.yml
     ports:
@@ -17,8 +17,8 @@ services:
       - "4318:4318" # OTLP http receiver
       - "55679:55679" # zpages extension
     depends_on:
-      - jaeger-all-in-one
-      - zipkin-all-in-one
+      - jaeger
+      - zipkin
 
   prometheus:
     container_name: prometheus
@@ -35,6 +35,8 @@ services:
     image: grafana/loki:latest
     container_name: loki
     command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./docker2/loki/loki.yml:/etc/loki/local-config.yaml
     ports:
       - "3100:3100"
 
@@ -58,7 +60,8 @@ services:
       - "3000:3000"
 
   # Jaeger
-  jaeger-all-in-one:
+  jaeger:
+    container_name: jaeger
     image: jaegertracing/all-in-one:latest
     restart: always
     ports:
@@ -67,7 +70,8 @@ services:
       - "14250"
 
   # Zipkin
-  zipkin-all-in-one:
+  zipkin:
+    container_name: zipkin
     image: openzipkin/zipkin:latest
     restart: always
     ports:
