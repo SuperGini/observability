@@ -3,6 +3,7 @@ package com.gini.services;
 import com.gini.dto.request.PersonRequest;
 import com.gini.dto.response.PersonResponse;
 import com.gini.entities.Person;
+import com.gini.error.exceptions.ResourceNotFound;
 import com.gini.repositories.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class PersonService {
     public PersonResponse findById(String id) {
         return personRepository.findById(id)
                 .map(x -> new PersonResponse(x.getId(), x.getUsername(), x.getFirstName(), x.getLastName()))
-                .orElseThrow(() -> new RuntimeException("person not found"));
+                .orElseThrow(() -> new ResourceNotFound("person not found"));
     }
 
     @Transactional(readOnly = true)
