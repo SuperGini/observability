@@ -91,11 +91,11 @@
 
 
 
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.micrometer</groupId>-->
+<!--            <artifactId>micrometer-registry-prometheus</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
 
         <!--        TRACES  START      -->
 
@@ -106,11 +106,11 @@
             <version>1.4.4</version>
         </dependency>
 <!--        step2: takes the metrics in open telemetry format and exports them to zipkin-->
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-exporter-zipkin</artifactId>
-            <version>1.43.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.opentelemetry</groupId>-->
+<!--            <artifactId>opentelemetry-exporter-zipkin</artifactId>-->
+<!--            <version>1.43.0</version>-->
+<!--        </dependency>-->
 
 
         <!--        TRACES  END      -->
@@ -125,10 +125,10 @@
 <!-- ////////////////////////////       Open Telemetry ////////////////////////////////////////////////////////   -->
 
         <!-- transfer micrometer to opentelemetry fromat -->
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-otlp</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.micrometer</groupId>-->
+<!--            <artifactId>micrometer-registry-otlp</artifactId>-->
+<!--        </dependency>-->
 
         <!-- send observability  -->
         <dependency>

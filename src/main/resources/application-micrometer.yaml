@@ -89,8 +89,11 @@ management:
         do.sleep.method.timed: 300ms,500ms,1s,2s
         http.server.requests: 300ms,500ms,1s,2s
 
-
-
+#https://docs.spring.io/spring-boot/reference/actuator/tracing.html#actuator.micrometer-tracing.logging
+#logging:
+#  pattern:
+#    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}] "
+#  include-application-name: false
 
 
 #  metrics:
