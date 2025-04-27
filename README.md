@@ -69,9 +69,9 @@ public class OtlConfg implements InitializingBean {
 
 ### To create the grafana stack use the [docker-compose.yml](docker-compose.yml) file
 
-observ-2:
+observ-2: https://github.com/SuperGini/observability-2
 <br>
-observ-3:
+observ-3: https://github.com/SuperGini/observability-3
 
 #### Inspiratin: https://www.youtube.com/watch?v=UC09F-yGMG4
 
